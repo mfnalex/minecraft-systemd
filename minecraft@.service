@@ -4,7 +4,8 @@ After=network.target
 
 [Service]
 # Path to server root folder
-Environment=MC_DIR=/opt/minecraft/%i
+WorkingDirectory=/opt/minecraft/%i
+EnvironmentFile=-/opt/minecraft/%i/systemd.conf
 
 # Default values - override with systemd.conf in server directory
 Environment=XMS=512M
@@ -12,7 +13,6 @@ Environment=XMX=1024M
 Environment=JAVA_EXECUTABLE=/usr/bin/java
 Environment=SERVER_JAR=server.jar
 
-WorkingDirectory=${MC_DIR}
 Type=simple
 User=minecraft
 Group=minecraft
@@ -22,8 +22,6 @@ StandardInput=socket
 StandardOutput=journal
 StandardError=journal
 
-EnvironmentFile=-${MC_DIR}/systemd.conf
-
 ExecStart=/bin/bash -c "${JAVA_EXECUTABLE} -Xms${XMS} -Xmx${XMX} -jar ${SERVER_JAR}"
 ExecStop=/bin/bash -c "/bin/echo stop > /run/minecraft/%i.stdin"
 Restart=on-failure
@@ -32,15 +30,11 @@ RestartSec=60s
 KillSignal=SIGCONT
 
 NoNewPrivileges=true
-PrivateDevices=true
-PrivateTmp=true
 PrivateUsers=true
 ProtectControlGroups=true
-ProtectHome=true
 ProtectKernelModules=true
 ProtectKernelTunables=true
-ProtectKernelLogs=true
-ProtectSystem=strict
+ProtectSystem=full
 
 [Install]
 WantedBy=multi-user.target
