@@ -8,7 +8,7 @@ WorkingDirectory=/opt/minecraft/%i
 EnvironmentFile=-/opt/minecraft/%i/server.env
 
 # Default values - override with server.env in server directory
-Environment=XMS=512M
+Environment=XMS=256M
 Environment=XMX=1024M
 Environment=JAVA_EXECUTABLE=/usr/bin/java
 Environment=SERVER_JAR=server.jar
