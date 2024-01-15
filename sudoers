@@ -4,5 +4,6 @@
 %minecraft	ALL=(root) NOPASSWD: /bin/systemctl start minecraft@*
 %minecraft	ALL=(root) NOPASSWD: /bin/systemctl stop minecraft@*
 %minecraft	ALL=(root) NOPASSWD: /bin/systemctl restart minecraft@*
+%minecraft	ALL=(root) NOPASSWD: /bin/systemctl status minecraft@*
 %minecraft	ALL=(root) NOPASSWD: /bin/journalctl -u minecraft@*
 %minecraft	ALL=(root) NOPASSWD: /bin/journalctl -fu minecraft@*
