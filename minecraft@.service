@@ -12,6 +12,8 @@ Environment=XMS=256M
 Environment=XMX=1024M
 Environment=JAVA_EXECUTABLE=/usr/bin/java
 Environment=SERVER_JAR=server.jar
+Environment=JAVA_ARGUMENTS=-server
+Environment=JAR_ARGUMENTS=nogui
 
 Type=simple
 User=minecraft
@@ -22,7 +24,7 @@ StandardInput=socket
 StandardOutput=journal
 StandardError=journal
 
-ExecStart=/bin/bash -c "${JAVA_EXECUTABLE} -Xms${XMS} -Xmx${XMX} -jar ${SERVER_JAR}"
+ExecStart=/bin/bash -c "${JAVA_EXECUTABLE} -Xms${XMS} -Xmx${XMX} ${JAVA_ARGUMENTS} -jar ${SERVER_JAR} ${JAR_ARGUMENTS}"
 ExecStop=/bin/bash -c "/bin/echo stop > /run/minecraft/%i.stdin"
 Restart=on-failure
 RestartSec=60s
