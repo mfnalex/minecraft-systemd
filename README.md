@@ -22,7 +22,7 @@ mkdir -p /opt/minecraft
 chown minecraft: /opt/minecraft
 
 # Step five: Install sudoers file
-cp sudoers /etc/sudoers.d/
+cp sudoers /etc/sudoers.d/minecraft
 ```
 
 # Setup your first server
@@ -64,6 +64,9 @@ systemctl stop minecraft@<servername>
 
 # Restart a server
 systemctl restart minecraft@<servername>
+
+# Show status
+systemctl status minecraft@<servername>
 
 # See server log
 journalctl -u minecraft@<servername>
